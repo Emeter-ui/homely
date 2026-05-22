@@ -1,0 +1,29 @@
+# deps
+node_modules/
+.pnpm-store/
+
+# next.js
+.next/
+out/
+build/
+*.tsbuildinfo
+
+# env
+.env*.local
+
+# vitest
+coverage/
+
+# os
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode/
+.idea/
+
+# pwa
+public/sw.js
+public/sw.js.map
+public/workbox-*.js
+public/workbox-*.js.map

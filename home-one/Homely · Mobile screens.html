@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Homely — Screens 01–57</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; font-family: "Inter", -apple-system, system-ui, sans-serif; background: #f0eee9; }
+  * { box-sizing: border-box; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="shared.jsx"></script>
+<script type="text/babel" src="screens-onboarding.jsx"></script>
+<script type="text/babel" src="screens-kyc.jsx"></script>
+<script type="text/babel" src="screens-guest-home.jsx"></script>
+<script type="text/babel" src="screens-guest-booking.jsx"></script>
+<script type="text/babel" src="screens-guest-profile.jsx"></script>
+
+<script type="text/babel">
+const W = 390, H = 844;
+
+const onboarding = [
+  ['s01', '01 · Splash', S01_Splash],
+  ['s02', '02 · Onboarding · Welcome', S02_Onb1],
+  ['s03', '03 · Onboarding · List property', S03_Onb2],
+  ['s04', '04 · Onboarding · Book confidently', S04_Onb3],
+  ['s05', '05 · Onboarding · Final', S05_OnbFinal],
+  ['s06', '06 · Sign up', S06_SignUp],
+  ['s07', '07 · Sign in', S07_SignIn],
+  ['s08', '08 · OAuth loading', S08_OAuthLoad],
+  ['s09', '09 · Phone OTP', S09_OTP],
+  ['s10', '10 · Email verification pending', S10_EmailPending],
+  ['s11', '11 · Forgot password', S11_Forgot],
+  ['s12', '12 · Reset password', S12_Reset],
+  ['s13', '13 · Two-factor auth', S13_2FA],
+  ['s14', '14 · Account suspended', S14_Suspended],
+];
+
+const kyc = [
+  ['s15', '15 · KYC intro', S15_KycIntro],
+  ['s16', '16 · KYC doc type', S16_KycDocType],
+  ['s17', '17 · KYC upload · front', S17_KycUploadFront],
+  ['s18', '18 · KYC upload · back', S18_KycUploadBack],
+  ['s19', '19 · KYC selfie / liveness', S19_KycSelfie],
+  ['s20', '20 · KYC review & submit', S20_KycReview],
+  ['s21', '21 · KYC pending', S21_KycPending],
+  ['s22', '22 · KYC verified', S22_KycVerified],
+  ['s23', '23 · KYC rejected', S23_KycRejected],
+  ['s24', '24 · KYC resubmission', S24_KycResubmit],
+];
+
+const guestHome = [
+  ['s25', '25 · Home / landing', S25_Home],
+  ['s26', '26 · Search results', S26_SearchResults],
+  ['s27', '27 · Filter bottom sheet', S27_Filter],
+  ['s28', '28 · Map view', S28_MapView],
+  ['s29', '29 · Category browse', S29_Category],
+  ['s30', '30 · Property detail · top', S30_PropDetailTop],
+  ['s31', '31 · Property detail · middle', S31_PropDetailMid],
+  ['s32', '32 · Property detail · bottom', S32_PropDetailBot],
+  ['s33', '33 · Image gallery', S33_Gallery],
+  ['s34', '34 · Host profile', S34_HostProfile],
+  ['s35', '35 · All reviews', S35_AllReviews],
+];
+
+const booking = [
+  ['s36', '36 · Date selection', S36_DateSelect],
+  ['s37', '37 · Booking summary', S37_BookingSummary],
+  ['s38', '38 · Booking confirmation', S38_BookingConfirm],
+  ['s39', '39 · Payment · Stripe', S39_Payment],
+  ['s40', '40 · Payment success', S40_PaySuccess],
+  ['s41', '41 · Payment failed', S41_PayFail],
+  ['s42', '42 · Request to book', S42_RequestBook],
+  ['s43', '43 · Request sent', S43_RequestSent],
+  ['s44', '44 · My bookings · upcoming', S44_MyBookingsUp],
+  ['s45', '45 · My bookings · past', S45_MyBookingsPast],
+  ['s46', '46 · Booking detail', S46_BookingDetail],
+  ['s47', '47 · Cancel booking', S47_Cancel],
+  ['s48', '48 · Cancellation confirmation', S48_CancelConfirm],
+];
+
+const account = [
+  ['s49', '49 · Write a review', S49_WriteReview],
+  ['s50', '50 · Review submitted', S50_ReviewSubmitted],
+  ['s51', '51 · My reviews', S51_MyReviews],
+  ['s52', '52 · Favourites', S52_Favourites],
+  ['s53', '53 · Guest profile', S53_GuestProfile],
+  ['s54', '54 · Edit profile', S54_EditProfile],
+  ['s55', '55 · Notification prefs', S55_NotifPrefs],
+  ['s56', '56 · Account settings', S56_AccountSettings],
+  ['s57', '57 · Delete account', S57_DeleteAccount],
+];
+
+function renderRow(rows) {
+  return rows.map(([id, label, Comp]) => (
+    <DCArtboard key={id} id={id} label={label} width={W} height={H}>
+      <Comp />
+    </DCArtboard>
+  ));
+}
+
+function App() {
+  return (
+    <DesignCanvas
+      title="Homely · Mobile screens"
+      subtitle="Sections 1–3 · 57 screens · iPhone 14 (390×844)"
+    >
+      <DCSection
+        id="brand"
+        title="Brand & system"
+        subtitle="Palette, fonts, primitives used across every screen"
+      >
+        <DCArtboard id="tokens" label="Design tokens" width={760} height={520}>
+          <TokensCard />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection
+        id="onboarding"
+        title="1 · Onboarding & Authentication"
+        subtitle="Screens 01 – 14 · Shown to every new user"
+      >
+        {renderRow(onboarding)}
+      </DCSection>
+
+      <DCSection
+        id="kyc"
+        title="2 · KYC & Identity Verification"
+        subtitle="Screens 15 – 24 · Required for hosts and gated bookings"
+      >
+        {renderRow(kyc)}
+      </DCSection>
+
+      <DCSection
+        id="guest-home"
+        title="3.1 – 3.2 · Discovery & Property Detail"
+        subtitle="Screens 25 – 35"
+      >
+        {renderRow(guestHome)}
+      </DCSection>
+
+      <DCSection
+        id="booking"
+        title="3.3 – 3.4 · Booking & Reservations"
+        subtitle="Screens 36 – 48"
+      >
+        {renderRow(booking)}
+      </DCSection>
+
+      <DCSection
+        id="account"
+        title="3.5 – 3.7 · Reviews, Favourites & Profile"
+        subtitle="Screens 49 – 57"
+      >
+        {renderRow(account)}
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+// Tokens overview card — shown at top of canvas
+// ─────────────────────────────────────────────────────────────
+function TokensCard() {
+  const swatches = [
+    { v: '#000066', n: 'Navy',         use: 'Headers · Primary brand' },
+    { v: '#F48536', n: 'Orange',       use: 'CTA · Accent · Active' },
+    { v: '#99CC33', n: 'Martian Green',use: 'Verified · Success' },
+    { v: '#FEF3EB', n: 'Pale',         use: 'Surfaces · Backgrounds' },
+    { v: '#000000', n: 'Black',        use: 'Body text' },
+    { v: '#E53E3E', n: 'Red',          use: 'Destructive · Errors' },
+  ];
+  return (
+    <div style={{
+      width: '100%', height: '100%', background: '#fff', padding: 28,
+      fontFamily: '"Inter", system-ui', color: '#000', overflow: 'hidden',
+      display: 'flex', flexDirection: 'column', gap: 18,
+    }}>
+      <div>
+        <div style={{ fontSize: 11, color: 'rgba(0,0,0,0.5)', fontWeight: 700, letterSpacing: 0.6, textTransform: 'uppercase' }}>System</div>
+        <h2 style={{ fontSize: 30, fontWeight: 800, color: '#000066', letterSpacing: -0.8, margin: '4px 0 0' }}>Homely design tokens</h2>
+      </div>
+
+      {/* Swatches */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 12 }}>
+        {swatches.map(s => (
+          <div key={s.v} style={{ borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(0,0,0,0.06)' }}>
+            <div style={{ height: 64, background: s.v, borderBottom: s.v === '#FFFFFF' ? '1px solid rgba(0,0,0,0.06)' : 'none' }} />
+            <div style={{ padding: '8px 10px', background: '#fff' }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#000066' }}>{s.n}</div>
+              <div style={{ fontSize: 10, fontFamily: '"JetBrains Mono", ui-monospace', color: 'rgba(0,0,0,0.5)' }}>{s.v}</div>
+              <div style={{ fontSize: 10, color: 'rgba(0,0,0,0.7)', marginTop: 4, lineHeight: 1.3 }}>{s.use}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr', gap: 14 }}>
+        {/* Type */}
+        <div style={{ padding: 14, borderRadius: 12, border: '1px solid rgba(0,0,0,0.06)' }}>
+          <div style={{ fontSize: 11, color: 'rgba(0,0,0,0.5)', fontWeight: 700, letterSpacing: 0.6, textTransform: 'uppercase' }}>Typography</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 8 }}>
+            <span style={{ fontSize: 30, fontWeight: 800, color: '#000066', letterSpacing: -1, lineHeight: 1.1 }}>Headline 30/800</span>
+            <span style={{ fontSize: 17, fontWeight: 700, color: '#000066' }}>Title 17/700</span>
+            <span style={{ fontSize: 14, color: '#000' }}>Body 14/400 — Inter</span>
+            <span style={{ fontSize: 12, fontFamily: '"JetBrains Mono", ui-monospace', color: 'rgba(0,0,0,0.7)' }}>code · JetBrains Mono</span>
+          </div>
+        </div>
+
+        {/* Buttons */}
+        <div style={{ padding: 14, borderRadius: 12, border: '1px solid rgba(0,0,0,0.06)' }}>
+          <div style={{ fontSize: 11, color: 'rgba(0,0,0,0.5)', fontWeight: 700, letterSpacing: 0.6, textTransform: 'uppercase', marginBottom: 10 }}>Buttons</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <button style={{ height: 44, borderRadius: 22, background: '#F48536', color: '#fff', border: 'none', fontWeight: 600, fontSize: 14, boxShadow: '0 8px 18px rgba(244,133,54,0.28)' }}>Primary CTA</button>
+            <button style={{ height: 44, borderRadius: 22, background: 'transparent', color: '#000066', border: '1.5px solid #000066', fontWeight: 600, fontSize: 14 }}>Secondary</button>
+            <button style={{ height: 44, borderRadius: 22, background: '#E53E3E', color: '#fff', border: 'none', fontWeight: 600, fontSize: 14 }}>Destructive</button>
+          </div>
+        </div>
+
+        {/* Badges */}
+        <div style={{ padding: 14, borderRadius: 12, border: '1px solid rgba(0,0,0,0.06)' }}>
+          <div style={{ fontSize: 11, color: 'rgba(0,0,0,0.5)', fontWeight: 700, letterSpacing: 0.6, textTransform: 'uppercase', marginBottom: 10 }}>Status</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+            {[
+              { l: 'KYC verified', bg: 'rgba(153,204,51,0.2)', fg: '#3d6610', dot: '#99CC33' },
+              { l: 'Instant book', bg: 'rgba(244,133,54,0.15)', fg: '#a4541a', dot: '#F48536' },
+              { l: 'Pending', bg: 'rgba(0,0,102,0.1)', fg: '#000066', dot: '#000066' },
+              { l: 'Rejected', bg: 'rgba(229,62,62,0.12)', fg: '#a82a2a', dot: '#E53E3E' },
+            ].map(b => (
+              <span key={b.l} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: b.bg, color: b.fg, height: 24, padding: '0 10px', borderRadius: 12, fontSize: 12, fontWeight: 600 }}>
+                <span style={{ width: 6, height: 6, borderRadius: 3, background: b.dot }} />
+                {b.l}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div style={{ fontSize: 11, color: 'rgba(0,0,0,0.5)', marginTop: 'auto' }}>
+        Mobile frame · 390×844 (iPhone 14 base) · 12 / 16 / 24 spacing · 12 px card radius · 999 px pill buttons
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
