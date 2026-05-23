@@ -25,7 +25,7 @@ export default function S53_GuestProfile() {
           </div>
         </div>
       </div>
-      <div style={{ padding: '0 20px', marginTop: -60 }}>
+      <div style={{ padding: '0 20px', marginTop: -60, position: 'relative', zIndex: 1 }}>
         <Card p={20}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
             <Avatar name="Amelia Bankole" size={68} verified />

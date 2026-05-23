@@ -112,7 +112,7 @@ export default function S61_MyRentals() {
                 </div>
               </div>
             </div>
-          </Card>
+          </Card></div>
         ))}
       </div>
       <OwnerNav active="rentals" />

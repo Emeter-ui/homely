@@ -11,7 +11,7 @@ export default function S33_Gallery() {
   const router = useRouter();
 
   return (
-    <Screen bg="#000" dark statusBarDark scroll={false}>
+    <Screen bg="#000" dark scroll={false}>
       <div style={{ position: 'absolute', inset: 0, background: '#000' }}>
         <div style={{ position: 'absolute', top: 56, left: 16, right: 16, display: 'flex', alignItems: 'center', justifyContent: 'space-between', zIndex: 5 }}>
           <div

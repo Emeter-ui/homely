@@ -19,7 +19,7 @@ export default function S19_KycSelfie() {
   }, [router]);
 
   return (
-    <Screen bg={C.navy} dark statusBarDark>
+    <Screen bg={C.navy} dark>
       <TopHeader title="Liveness check" subtitle="Step 3 of 4" dark />
       <div style={{ padding: '8px 24px 40px', color: '#fff' }}>
         <ProgressBar value={3} total={4} dark />

@@ -93,7 +93,7 @@ export default function S58_OwnerDash() {
         </div>
       </div>
 
-      <div style={{ padding: '0 20px', marginTop: -56 }}>
+      <div style={{ padding: '0 20px', marginTop: -56, position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
           {[
             { l: 'Active listings', v: '3', sub: '2 instant book', ic: 'building', href: '/owner/listings' },

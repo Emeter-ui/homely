@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Ico } from '@/components/ui/Ico';
 import { ImagePh } from '@/components/ui/ImagePh';
 import { C } from '@/lib/tokens';
+import { PROPERTY_IMG } from '@/lib/sample-images';
 
 export default function S44_MyBookingsUp() {
   const router = useRouter();
@@ -37,7 +38,7 @@ export default function S44_MyBookingsUp() {
           </div>
           <div style={{ padding: 14 }}>
             <div style={{ display: 'flex', gap: 12 }}>
-              <ImagePh w={88} h={88} label="prop" radius={10} />
+              <ImagePh w={88} h={88} src={PROPERTY_IMG.oceanStudio} alt="Ocean View Studio" radius={10} />
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 11, color: C.ink50 }}>Lagos · Studio</div>
                 <div style={{ fontSize: 15, fontWeight: 800, color: C.navy, lineHeight: 1.2 }}>Ocean View Studio</div>
@@ -60,12 +61,12 @@ export default function S44_MyBookingsUp() {
         </Card>
 
         {[
-          { t: 'Shoreditch Loft', d: 'Aug 3 – 9', s: 'pending', l: 'London' },
-          { t: 'Tarkwa Bay Bungalow', d: 'Oct 12 – 18', s: 'confirmed', l: 'Lagos' },
+          { t: 'Shoreditch Loft', d: 'Aug 3 – 9', s: 'pending', l: 'London', img: PROPERTY_IMG.shoreditchLoft },
+          { t: 'Tarkwa Bay Bungalow', d: 'Oct 12 – 18', s: 'confirmed', l: 'Lagos', img: PROPERTY_IMG.tarkwaBungalow },
         ].map(b => (
           <Card key={b.t} p={12} style={{ cursor: 'pointer' }} onClick={() => router.push('/trips/1')}>
             <div style={{ display: 'flex', gap: 12 }}>
-              <ImagePh w={72} h={72} label="prop" radius={10} />
+              <ImagePh w={72} h={72} src={b.img} alt={b.t} radius={10} />
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 11, color: C.ink50 }}>{b.l}</div>
                 <div style={{ fontSize: 14, fontWeight: 700, color: C.navy }}>{b.t}</div>

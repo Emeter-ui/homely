@@ -17,7 +17,7 @@ export default function S01_Splash() {
     return () => clearTimeout(t);
   }, [router]);
   return (
-    <Screen bg={C.navy} dark statusBarDark>
+    <Screen bg={C.navy} dark>
       <div style={{ position: 'absolute', inset: 0, display: 'flex',
         flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 24 }}>
         <div style={{ position: 'relative', width: 96, height: 96 }}>

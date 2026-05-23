@@ -20,7 +20,14 @@ describe('Logo', () => {
 });
 
 describe('Ico', () => {
-  it.each(['mail', 'lock', 'eye', 'phone', 'shield', 'info', 'check', 'check-c', 'x', 'x-c', 'alert', 'camera', 'upload', 'doc', 'card', 'globe', 'building', 'wifi', 'star', 'google', 'apple', 'msg'])('renders icon: %s', (name) => {
+  it.each([
+    'mail', 'lock', 'eye', 'phone', 'shield', 'info', 'check', 'check-c', 'x', 'x-c', 'alert',
+    'camera', 'upload', 'doc', 'card', 'globe', 'building', 'wifi', 'star', 'google', 'apple', 'msg',
+    'bell', 'search', 'sliders', 'filter', 'heart', 'heart-fill', 'sparkle', 'wave', 'tree', 'home', 'pin',
+    'more', 'settings', 'plus', 'minus', 'edit', 'trash', 'send', 'share', 'user', 'moon', 'flame',
+    'wallet', 'download', 'chev-l', 'chev-r', 'chev-d', 'arr-r',
+    'bed', 'bath', 'kitchen', 'parking', 'sun', 'flag', 'wifi-amenity',
+  ])('renders icon: %s', (name) => {
     const { container } = render(<Ico name={name as never} size={16} />);
     expect(container.querySelector('svg')).toBeInTheDocument();
   });

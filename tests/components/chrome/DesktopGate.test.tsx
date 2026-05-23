@@ -16,33 +16,34 @@ function setViewport({ width, fine }: { width: number; fine: boolean }) {
 describe('DesktopGate', () => {
   beforeEach(() => {
     setViewport({ width: 390, fine: false });
+    localStorage.clear();
   });
 
-  it('renders children when width <= 500 (mobile)', () => {
+  it('renders children at phone widths', () => {
     render(<DesktopGate ssrIsDesktop={false}>app content</DesktopGate>);
     expect(screen.getByText('app content')).toBeInTheDocument();
+    expect(screen.queryByText(/not available on desktop/i)).not.toBeInTheDocument();
   });
 
-  it('renders children inside a phone frame AND shows QR section on desktop', () => {
+  it('blocks at desktop widths and shows the not-available card with QR', () => {
     setViewport({ width: 1280, fine: true });
     render(<DesktopGate ssrIsDesktop={false}>app content</DesktopGate>);
-    expect(screen.getByText('app content')).toBeInTheDocument();
-    expect(screen.getByText(/open on your phone/i)).toBeInTheDocument();
-    expect(screen.getByText(/scan this code/i)).toBeInTheDocument();
+    expect(screen.queryByText('app content')).not.toBeInTheDocument();
+    expect(screen.getByText(/not available on desktop/i)).toBeInTheDocument();
+    expect(screen.getByTestId('qr-placeholder')).toBeInTheDocument();
   });
 
-  it('renders children when width > 500 but pointer is coarse (tablet/touch laptop in portrait)', () => {
-    setViewport({ width: 800, fine: false });
+  it('blocks tablets (coarse pointer, width above the phone cutoff)', () => {
+    setViewport({ width: 900, fine: false });
     render(<DesktopGate ssrIsDesktop={false}>app content</DesktopGate>);
-    expect(screen.getByText('app content')).toBeInTheDocument();
-    expect(screen.queryByText(/open on your phone/i)).not.toBeInTheDocument();
+    expect(screen.queryByText('app content')).not.toBeInTheDocument();
+    expect(screen.getByText(/not available on desktop/i)).toBeInTheDocument();
   });
 
-  it('shows desktop layout initially when ssrIsDesktop=true', () => {
+  it('shows block initially when ssrIsDesktop=true', () => {
     setViewport({ width: 1280, fine: true });
     render(<DesktopGate ssrIsDesktop={true}>app content</DesktopGate>);
-    expect(screen.getByText('app content')).toBeInTheDocument();
-    expect(screen.getByText(/open on your phone/i)).toBeInTheDocument();
+    expect(screen.getByText(/not available on desktop/i)).toBeInTheDocument();
   });
 
   it('respects the dev bypass in localStorage', () => {
@@ -50,6 +51,5 @@ describe('DesktopGate', () => {
     localStorage.setItem('homely-allow-desktop', '1');
     render(<DesktopGate ssrIsDesktop={false}>app content</DesktopGate>);
     expect(screen.getByText('app content')).toBeInTheDocument();
-    localStorage.removeItem('homely-allow-desktop');
   });
 });

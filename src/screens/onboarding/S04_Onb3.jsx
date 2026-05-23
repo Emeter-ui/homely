@@ -9,6 +9,8 @@ import { ImagePh } from '@/components/ui/ImagePh';
 import { Ico } from '@/components/ui/Ico';
 import { C } from '@/lib/tokens';
 
+const HERO = 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80';
+
 export default function S04_Onb3() {
   const router = useRouter();
   const startX = useRef(0);
@@ -22,36 +24,62 @@ export default function S04_Onb3() {
 
   return (
     <Screen bg={C.pale}>
-      <div onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} style={{ display: 'contents' }}>
-        <div style={{ padding: '8px 24px 0', display: 'flex', justifyContent: 'flex-end' }}>
+      <div
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        style={{
+          flex: 1,
+          minHeight: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          padding: '8px 24px 32px',
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'flex-end', height: 32, alignItems: 'center' }}>
           <span
             onClick={() => router.push('/sign-up')}
             style={{ fontSize: 14, color: C.ink70, fontWeight: 500, cursor: 'pointer' }}
           >Skip</span>
         </div>
-        <div style={{ padding: '20px 24px 0', display: 'flex', flexDirection: 'column', height: 'calc(100% - 40px)' }}>
-          <div style={{ position: 'relative', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <ImagePh w={300} h={300} label="hero · safety" radius={24} />
-            <div style={{ position: 'absolute', top: 30, left: -8, background: C.green, color: C.navy, borderRadius: 14,
-              padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13, boxShadow: '0 8px 24px rgba(153,204,51,0.4)' }}>
+
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 0 }}>
+          <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
+            <ImagePh w="100%" h={300} radius={24} src={HERO} alt="Warm cozy bedroom" />
+            <div style={{
+              position: 'absolute', top: 22, left: 4,
+              background: C.green, color: C.navy, borderRadius: 14,
+              padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 8,
+              fontWeight: 800, fontSize: 13,
+              boxShadow: '0 8px 24px rgba(153,204,51,0.4)',
+            }}>
               <Ico name="shield" size={16} color={C.navy} />KYC verified
             </div>
-            <div style={{ position: 'absolute', bottom: 24, right: -8, background: C.white, borderRadius: 14, padding: 10,
-              boxShadow: '0 8px 24px rgba(0,0,0,0.08)', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{
+              position: 'absolute', bottom: 22, right: 4,
+              background: C.white, borderRadius: 14, padding: '10px 12px',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+              display: 'flex', alignItems: 'center', gap: 8,
+            }}>
               <Ico name="lock" size={14} color={C.navy} />
-              <span style={{ fontSize: 12, fontWeight: 600 }}>Secure payments · Stripe</span>
+              <span style={{ fontSize: 12, fontWeight: 700, color: C.navy }}>Secure payments · Stripe</span>
             </div>
           </div>
-          <div style={{ padding: '32px 0 24px' }}>
-            <h1 style={{ fontSize: 32, fontWeight: 800, color: C.navy, letterSpacing: -1.2, margin: 0, lineHeight: 1.05 }}>
+
+          <div style={{ padding: '32px 4px 0', textAlign: 'center' }}>
+            <h1 style={{
+              fontSize: 32, fontWeight: 800, color: C.navy,
+              letterSpacing: -1.2, margin: 0, lineHeight: 1.05,
+            }}>
               Book with<br/>confidence.
             </h1>
-            <p style={{ fontSize: 15, color: C.ink70, margin: '12px 0 0', lineHeight: 1.5 }}>
+            <p style={{ fontSize: 15, color: C.ink70, margin: '14px auto 0', lineHeight: 1.5, maxWidth: 320 }}>
               Every host is ID-verified. Payments are held until check-in. 24/7 dispute support included.
             </p>
           </div>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
           <Dots active={2} />
-          <div style={{ height: 16 }} />
           <PrimaryButton onClick={() => router.push('/get-started')}>Continue</PrimaryButton>
         </div>
       </div>

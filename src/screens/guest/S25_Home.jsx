@@ -8,19 +8,20 @@ import { Ico } from '@/components/ui/Ico';
 import { ImagePh } from '@/components/ui/ImagePh';
 import { Badge } from '@/components/ui/Badge';
 import { C } from '@/lib/tokens';
+import { PROPERTY_IMG } from '@/lib/sample-images';
 
 const PROPS = [
-  { id: 'p1', title: 'Lekki Phase 1 — Ocean View Studio', city: 'Lagos · Nigeria', price: 42, rating: 4.92, reviews: 184, beds: 1, host: 'Tunde A.', tag: 'Superhost' },
-  { id: 'p2', title: 'Shoreditch Loft with Terrace', city: 'London · UK', price: 168, rating: 4.88, reviews: 312, beds: 2, host: 'Mira K.', tag: 'New' },
-  { id: 'p3', title: 'Quiet Bungalow near the Beach', city: 'Tarkwa Bay · Lagos', price: 88, rating: 4.95, reviews: 67, beds: 3, host: 'Ada O.', tag: 'Superhost' },
-  { id: 'p4', title: 'Brutalist Apartment, Hackney', city: 'London · UK', price: 124, rating: 4.81, reviews: 96, beds: 1 },
+  { id: 'p1', title: 'Lekki Phase 1 — Ocean View Studio', city: 'Lagos · Nigeria', price: 42, rating: 4.92, reviews: 184, beds: 1, host: 'Tunde A.', tag: 'Superhost', img: PROPERTY_IMG.oceanStudio },
+  { id: 'p2', title: 'Shoreditch Loft with Terrace', city: 'London · UK', price: 168, rating: 4.88, reviews: 312, beds: 2, host: 'Mira K.', tag: 'New', img: PROPERTY_IMG.shoreditchLoft },
+  { id: 'p3', title: 'Quiet Bungalow near the Beach', city: 'Tarkwa Bay · Lagos', price: 88, rating: 4.95, reviews: 67, beds: 3, host: 'Ada O.', tag: 'Superhost', img: PROPERTY_IMG.tarkwaBungalow },
+  { id: 'p4', title: 'Brutalist Apartment, Hackney', city: 'London · UK', price: 124, rating: 4.81, reviews: 96, beds: 1, img: PROPERTY_IMG.brutalistApt },
 ];
 
 function PropCardWide({ p, onPress }) {
   return (
-    <div style={{ width: 280, flexShrink: 0 }} onClick={onPress}>
+    <div style={{ width: 280, flexShrink: 0, cursor: 'pointer' }} onClick={onPress}>
       <div style={{ position: 'relative', borderRadius: 14, overflow: 'hidden' }}>
-        <ImagePh w="100%" h={200} label={p.id} radius={14} />
+        <ImagePh w="100%" h={200} label={p.title} radius={14} src={p.img} alt={p.title} />
         <div style={{ position: 'absolute', top: 12, left: 12 }}>
           {p.tag && <Badge kind={p.tag === 'Superhost' ? 'orange' : 'green'} size="sm">{p.tag}</Badge>}
         </div>
@@ -48,8 +49,8 @@ function PropCardWide({ p, onPress }) {
 
 function PropCard({ p, onPress }) {
   return (
-    <div style={{ background: '#fff', borderRadius: 16, padding: 12, border: `1px solid ${C.ink06}`, display: 'flex', gap: 12 }} onClick={onPress}>
-      <ImagePh w={112} h={112} label={p.id} radius={10} />
+    <div style={{ background: '#fff', borderRadius: 16, padding: 12, border: `1px solid ${C.ink06}`, display: 'flex', gap: 12, cursor: 'pointer' }} onClick={onPress}>
+      <ImagePh w={112} h={112} label={p.title} radius={10} src={p.img} alt={p.title} />
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
           <div style={{ flex: 1 }}>
@@ -80,57 +81,126 @@ export default function S25_Home() {
 
   return (
     <Screen padBottom={88}>
-      {/* Top — search + greeting */}
-      <div style={{ background: C.navy, color: '#fff', padding: '16px 20px 64px', borderRadius: '0 0 28px 28px', position: 'relative' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div>
-            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>Welcome back,</div>
-            <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: -0.4 }}>Amelia 👋</div>
-          </div>
-          <div style={{ display: 'flex', gap: 10 }}>
-            <div style={{ width: 40, height: 40, borderRadius: 20, background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-              <Ico name="bell" size={18} color="#fff" />
-              <div style={{ position: 'absolute', top: 8, right: 9, width: 8, height: 8, borderRadius: 4, background: C.orange, border: '2px solid #000066' }} />
+      {/* Top — greeting + search */}
+      <div style={{
+        background: C.navy,
+        color: '#fff',
+        padding: '20px 20px 56px',
+        borderRadius: '0 0 32px 32px',
+        position: 'relative',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+          <div style={{ minWidth: 0 }}>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', letterSpacing: 0.3, textTransform: 'uppercase', fontWeight: 600 }}>
+              Welcome back
             </div>
-            <Avatar name="Amelia" size={40} verified />
+            <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: -0.5, marginTop: 2, display: 'flex', alignItems: 'center', gap: 6 }}>
+              Amelia <span style={{ fontSize: 20 }}>👋</span>
+            </div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <button
+              type="button"
+              aria-label="Notifications"
+              style={{
+                width: 40, height: 40, borderRadius: 20,
+                background: 'rgba(255,255,255,0.12)',
+                border: '1px solid rgba(255,255,255,0.15)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                position: 'relative', padding: 0,
+              }}
+            >
+              <Ico name="bell" size={18} color="#fff" />
+              <span style={{
+                position: 'absolute', top: 8, right: 9,
+                width: 9, height: 9, borderRadius: 5,
+                background: C.orange, border: `2px solid ${C.navy}`,
+              }} />
+            </button>
+            <Avatar name="Amelia" size={40} verified ring="rgba(255,255,255,0.25)" />
           </div>
         </div>
-        <h1 style={{ fontSize: 28, fontWeight: 800, letterSpacing: -1, margin: '20px 0 16px', lineHeight: 1.1 }}>Where are you going next?</h1>
+        <h1 style={{
+          fontSize: 28, fontWeight: 800, letterSpacing: -1,
+          margin: '22px 0 14px', lineHeight: 1.15,
+        }}>
+          Where are you going next?
+        </h1>
         <div
           onClick={() => router.push('/search')}
-          style={{ background: '#fff', borderRadius: 14, padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12, boxShadow: '0 10px 30px rgba(0,0,0,0.18)', cursor: 'pointer' }}
+          role="button"
+          tabIndex={0}
+          style={{
+            background: '#fff', borderRadius: 16, padding: '10px 10px 10px 16px',
+            display: 'flex', alignItems: 'center', gap: 12,
+            boxShadow: '0 14px 32px rgba(0,0,0,0.22)', cursor: 'pointer',
+          }}
         >
           <Ico name="search" size={20} color={C.navy} />
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 14, fontWeight: 600, color: C.navy }}>Search destinations</div>
-            <div style={{ fontSize: 11, color: C.ink50 }}>Anywhere · Any week · Add guests</div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: C.navy, letterSpacing: -0.2 }}>
+              Search destinations
+            </div>
+            <div style={{ fontSize: 11, color: C.ink50, marginTop: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              Anywhere · Any week · Add guests
+            </div>
           </div>
-          <div style={{ width: 36, height: 36, borderRadius: 18, background: C.orange, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Ico name="sliders" size={16} color="#fff" />
+          <div
+            onClick={(e) => { e.stopPropagation(); router.push('/search/filters'); }}
+            aria-label="Filters"
+            style={{
+              width: 40, height: 40, borderRadius: 20, background: C.orange,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              flexShrink: 0,
+            }}
+          >
+            <Ico name="sliders" size={18} color="#fff" />
           </div>
         </div>
       </div>
 
       {/* Categories */}
-      <div style={{ padding: '16px 0 8px', marginTop: -32 }}>
-        <div style={{ display: 'flex', gap: 10, padding: '0 20px', overflowX: 'auto' }}>
+      <div style={{
+        padding: '14px 0 6px', marginTop: -28,
+        position: 'relative', zIndex: 1,
+      }}>
+        <div
+          style={{
+            display: 'flex', gap: 8, padding: '4px 20px',
+            overflowX: 'auto', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch',
+          }}
+        >
           {[
-            { ic: 'sparkle', l: 'Trending', a: true },
-            { ic: 'wave', l: 'Beach' },
+            { ic: 'sparkle', l: 'Trending' },
+            { ic: 'wave',    l: 'Beach' },
             { ic: 'building', l: 'City' },
-            { ic: 'tree', l: 'Nature' },
-            { ic: 'home', l: 'Tiny' },
-          ].map(c => (
-            <div key={c.l} style={{
-              padding: '10px 16px', borderRadius: 14, background: c.a ? C.navy : C.white,
-              color: c.a ? '#fff' : C.navy, fontSize: 13, fontWeight: 600,
-              display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0,
-              border: c.a ? 'none' : `1px solid ${C.ink06}`,
-            }}>
-              <Ico name={c.ic} size={16} color={c.a ? '#fff' : C.navy} />
-              {c.l}
-            </div>
-          ))}
+            { ic: 'tree',    l: 'Nature' },
+            { ic: 'home',    l: 'Tiny' },
+            { ic: 'flame',   l: 'Hot deals' },
+          ].map((c, i) => {
+            const active = i === 0;
+            return (
+              <button
+                key={c.l}
+                type="button"
+                style={{
+                  padding: '10px 14px', borderRadius: 999,
+                  background: active ? C.navy : C.white,
+                  color: active ? '#fff' : C.navy,
+                  fontSize: 13, fontWeight: 700, letterSpacing: -0.1,
+                  display: 'flex', alignItems: 'center', gap: 7, flexShrink: 0,
+                  border: active ? 'none' : `1px solid ${C.ink06}`,
+                  boxShadow: active
+                    ? '0 6px 16px rgba(0,0,102,0.25)'
+                    : '0 2px 6px rgba(0,0,0,0.04)',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                <Ico name={c.ic} size={15} color={active ? '#fff' : C.navy} />
+                {c.l}
+              </button>
+            );
+          })}
         </div>
       </div>
 

@@ -11,6 +11,7 @@ import { VerifiedBadge } from '@/components/ui/VerifiedBadge';
 import { Ico } from '@/components/ui/Ico';
 import { ImagePh } from '@/components/ui/ImagePh';
 import { C, F } from '@/lib/tokens';
+import { PROPERTY_IMG } from '@/lib/sample-images';
 
 export default function S46_BookingDetail() {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function S46_BookingDetail() {
     <Screen>
       <TopHeader title="Booking details" right={<Ico name="more" size={20} color={C.navy} />} />
       <div style={{ padding: '8px 20px 40px' }}>
-        <ImagePh w="100%" h={180} label="property" radius={14} />
+        <ImagePh w="100%" h={180} src={PROPERTY_IMG.oceanStudio} alt="Ocean View Studio" radius={14} />
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginTop: 14 }}>
           <div>
             <Badge kind="green">Confirmed · 24 days away</Badge>

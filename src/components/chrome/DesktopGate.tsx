@@ -10,7 +10,7 @@ interface DesktopGateProps {
 }
 
 export function DesktopGate({ ssrIsDesktop, children }: DesktopGateProps) {
-  const { width, hasFinePointer } = useViewport();
+  const { width } = useViewport();
   const [allowBypass, setAllowBypass] = useState(false);
   const [hydrated, setHydrated] = useState(false);
 
@@ -25,118 +25,84 @@ export function DesktopGate({ ssrIsDesktop, children }: DesktopGateProps) {
 
   if (allowBypass) return <>{children}</>;
 
-  const isDesktop = hydrated
-    ? width > MOBILE_MAX_WIDTH && hasFinePointer
-    : ssrIsDesktop;
+  const isDesktop = hydrated ? width > MOBILE_MAX_WIDTH : ssrIsDesktop;
 
   if (!isDesktop) return <>{children}</>;
 
   return (
     <div
       style={{
-        minHeight: '100vh',
+        minHeight: '100dvh',
         background: C.pale,
         display: 'flex',
-        flexDirection: 'column',
         alignItems: 'center',
-        padding: '32px 16px 48px',
-        gap: 28,
-        overflow: 'auto',
+        justifyContent: 'center',
+        padding: '32px 16px',
+        fontFamily: 'var(--font-inter)',
       }}
     >
       <div
         style={{
           width: '100%',
-          maxWidth: 390,
-          aspectRatio: '390 / 844',
-          borderRadius: 48,
-          background: '#111',
-          padding: 14,
-          boxShadow: `0 30px 80px ${hexA(C.navy, 0.3)}, 0 8px 24px ${hexA(C.navy, 0.15)}`,
-          flexShrink: 0,
-          overflow: 'hidden',
-        }}
-      >
-        <div
-          style={{
-            width: '100%',
-            height: '100%',
-            borderRadius: 36,
-            overflow: 'hidden',
-            background: C.pale,
-            position: 'relative',
-          }}
-        >
-          {children}
-        </div>
-      </div>
-
-      <div
-        style={{
+          maxWidth: 420,
           background: C.white,
-          borderRadius: 20,
-          padding: 24,
-          textAlign: 'center',
-          width: '100%',
-          maxWidth: 360,
-          boxShadow: `0 8px 24px ${hexA(C.navy, 0.08)}`,
-        }}
-      >
-        <div
-          style={{
-            fontSize: 13,
-            fontWeight: 700,
-            color: C.ink50,
-            letterSpacing: 0.5,
-            textTransform: 'uppercase',
-            marginBottom: 14,
-          }}
-        >
-          Open on your phone
-        </div>
-        {/* Phone view mockup container */}
-        <div style={{
-          width: 200,
-          height: 400,
-          margin: '0 auto 24px',
           borderRadius: 24,
-          border: `4px solid ${C.navy}`,
-          background: C.white,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          overflow: 'hidden',
-        }}>
-          {/* placeholder for app UI */}
-          <div style={{
-            width: '100%',
-            height: '100%',
+          padding: 32,
+          textAlign: 'center',
+          boxShadow: `0 12px 40px ${hexA(C.navy, 0.12)}`,
+        }}
+      >
+        <div
+          style={{
+            width: 64,
+            height: 64,
+            borderRadius: 16,
+            background: C.navy,
+            color: C.white,
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 24px',
+            fontSize: 24,
+            fontWeight: 800,
+            letterSpacing: -0.5,
+          }}
+        >
+          H
+        </div>
+        <h1
+          style={{
+            margin: '0 0 12px',
+            fontSize: 24,
+            fontWeight: 800,
+            color: C.navy,
+            letterSpacing: -0.6,
+          }}
+        >
+          Not available on desktop
+        </h1>
+        <p style={{ margin: '0 0 24px', fontSize: 15, color: C.ink70, lineHeight: 1.5 }}>
+          Homely is built for phones. Open this page on your mobile device to continue.
+        </p>
+        <div
+          data-testid="qr-placeholder"
+          style={{
+            width: 180,
+            height: 180,
+            margin: '0 auto 16px',
             background: hexA(C.navy, 0.06),
+            borderRadius: 12,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             fontSize: 12,
             color: C.ink50,
-          }}>
-            Phone view mockup
-          </div>
-        </div>
-        <div style={{
-          width: 160,
-          height: 160,
-          margin: '0 auto 14px',
-          background: hexA(C.navy, 0.06),
-          borderRadius: 12,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: 12,
-          color: C.ink50,
-        }} data-testid="qr-placeholder">
+          }}
+        >
           QR placeholder
         </div>
-        <p style={{ margin: 0, fontSize: 12, color: C.ink70, lineHeight: 1.5 }}>
-          Scan this code with your phone camera to install Homely as an app.
+        <p style={{ margin: 0, fontSize: 12, color: C.ink50 }}>
+          Scan with your phone camera to open Homely.
         </p>
       </div>
     </div>

@@ -11,19 +11,30 @@ export default function S05_OnbFinal() {
   const router = useRouter();
 
   return (
-    <Screen bg={C.navy} dark statusBarDark>
-      <div style={{ position: 'absolute', inset: 0, padding: '48px 24px 100px',
-        display: 'flex', flexDirection: 'column', gap: 28 }}>
+    <Screen bg={C.navy} dark>
+      <div style={{
+        flex: 1,
+        minHeight: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '32px 24px 32px',
+        gap: 28,
+      }}>
         <Logo size={28} color={C.white} />
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 24 }}>
+
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 28 }}>
           <div>
-            <div style={{ fontSize: 13, color: C.orange, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase' }}>Ready?</div>
-            <h1 style={{ fontSize: 40, fontWeight: 800, color: C.white, letterSpacing: -1.5,
-              margin: '12px 0 0', lineHeight: 1.0, textWrap: 'balance' }}>
+            <div style={{ fontSize: 13, color: C.orange, fontWeight: 800, letterSpacing: 2, textTransform: 'uppercase' }}>
+              Ready?
+            </div>
+            <h1 style={{
+              fontSize: 40, fontWeight: 800, color: C.white,
+              letterSpacing: -1.5, margin: '12px 0 0', lineHeight: 1.0,
+            }}>
               Your next stay<br/>starts here.
             </h1>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {[
               { icon: 'check-c', t: 'Browse 1,200+ verified properties' },
               { icon: 'check-c', t: 'Book instantly or message hosts' },
@@ -36,13 +47,14 @@ export default function S05_OnbFinal() {
             ))}
           </div>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <PrimaryButton size="lg" onClick={() => router.push('/sign-up')}>Get Started</PrimaryButton>
           <div
             onClick={() => router.push('/sign-in')}
             style={{ textAlign: 'center', fontSize: 14, color: 'rgba(255,255,255,0.7)', cursor: 'pointer' }}
           >
-            Already have an account? <span style={{ color: C.orange, fontWeight: 600 }}>Sign in</span>
+            Already have an account? <span style={{ color: C.orange, fontWeight: 700 }}>Sign in</span>
           </div>
         </div>
       </div>

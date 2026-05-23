@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Ico } from '@/components/ui/Ico';
 import { ImagePh } from '@/components/ui/ImagePh';
 import { C } from '@/lib/tokens';
+import { PROPERTY_IMG } from '@/lib/sample-images';
 
 export default function S45_MyBookingsPast() {
   const router = useRouter();
@@ -29,15 +30,15 @@ export default function S45_MyBookingsPast() {
       </div>
       <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         {[
-          { t: 'Brutalist Apartment', d: 'Apr 4 – 8, 2026', l: 'London', review: false },
-          { t: 'Quiet Bungalow', d: 'Feb 12 – 19, 2026', l: 'Tarkwa Bay', review: true },
-          { t: 'Lekki Studio', d: 'Dec 22 – 28, 2025', l: 'Lagos', review: true },
-          { t: 'Mile End Flat', d: 'Oct 1 – 4, 2025', l: 'London', review: true },
+          { t: 'Brutalist Apartment', d: 'Apr 4 – 8, 2026', l: 'London', review: false, img: PROPERTY_IMG.brutalistApt },
+          { t: 'Quiet Bungalow', d: 'Feb 12 – 19, 2026', l: 'Tarkwa Bay', review: true, img: PROPERTY_IMG.quietBungalow },
+          { t: 'Lekki Studio', d: 'Dec 22 – 28, 2025', l: 'Lagos', review: true, img: PROPERTY_IMG.lekkiStudio },
+          { t: 'Mile End Flat', d: 'Oct 1 – 4, 2025', l: 'London', review: true, img: PROPERTY_IMG.mileEndFlat },
         ].map(b => (
           <Card key={b.t} p={12}>
             <div style={{ display: 'flex', gap: 12 }}>
               <div style={{ position: 'relative' }}>
-                <ImagePh w={72} h={72} label="prop" radius={10} tone="light" />
+                <ImagePh w={72} h={72} src={b.img} alt={b.t} radius={10} />
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 11, color: C.ink50 }}>{b.l}</div>

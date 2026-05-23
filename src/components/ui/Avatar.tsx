@@ -5,9 +5,12 @@ interface AvatarProps {
   name: string;
   size?: number;
   verified?: boolean;
+  bg?: string;
+  color?: string;
+  ring?: string;
 }
 
-export function Avatar({ name, size = 40, verified }: AvatarProps) {
+export function Avatar({ name, size = 40, verified, bg = C.orange, color = C.white, ring }: AvatarProps) {
   const initial = name.trim().charAt(0).toUpperCase() || '?';
   return (
     <div style={{ position: 'relative', width: size, height: size, flexShrink: 0 }}>
@@ -16,13 +19,15 @@ export function Avatar({ name, size = 40, verified }: AvatarProps) {
           width: size,
           height: size,
           borderRadius: size / 2,
-          background: C.navy,
-          color: C.white,
+          background: bg,
+          color,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: size * 0.4,
+          fontSize: size * 0.42,
           fontWeight: 700,
+          letterSpacing: -0.3,
+          boxShadow: ring ? `0 0 0 2px ${ring}` : undefined,
         }}
       >
         {initial}
